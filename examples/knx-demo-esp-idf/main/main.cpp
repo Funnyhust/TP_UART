@@ -128,8 +128,8 @@ extern "C" void app_main(void) {
     knxPlatform.knxUartBaudRate(19200); // Set baud rate (can be changed to other values like 9600, 38400, etc.)
     knxPlatform.setupUart();
 
-    // Set button ISR
-    knx.setButtonISRFunction(myButtonPressed);
+    // Set button ISR    knx.setButtonISRFunction(myButtonPressed);
+
 
     // Read KNX memory (address table, etc.)
     knx.readMemory();
