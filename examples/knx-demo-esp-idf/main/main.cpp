@@ -12,8 +12,8 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define WIFI_SSID      "your_ssid"
-#define WIFI_PASS      "your_password"
+#define WIFI_SSID      "ALL LUMI"
+#define WIFI_PASS      "lumivn274"
 #define MASK_VERSION   0x07B0
 
 static const char *TAG = "knx-demo";

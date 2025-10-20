@@ -60,7 +60,7 @@
     #define KNX_LED_ACTIVE_ON 0
 #endif
 #ifndef KNX_BUTTON
-    #define KNX_BUTTON -1
+    #define KNX_BUTTON 13
 #endif
 
 typedef const uint8_t* (*RestoreCallback)(const uint8_t* buffer);
