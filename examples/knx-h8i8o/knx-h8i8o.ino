@@ -112,8 +112,8 @@ void outScaling(GroupObject& go)
 // callback for input interrupts
 inline void isrIn(uint8_t pin, uint8_t toggle)
 {
-    uint32_t diff = millis() - lastEvent[pin];
-    if (diff >= 50 && diff <= 500){
+    // uint32_t diff = millis() - lastEvent[pin];
+    // if (diff >= 50 && diff <= 500){
         if(toggle){
             val[pin]++;
         }else{
@@ -121,9 +121,10 @@ inline void isrIn(uint8_t pin, uint8_t toggle)
         }
         val[pin] &= 1;
         goInputOnOff(pin).value(val[pin]);
-    }
+        Serial1.println("Input changed on pin ");
+    // }
 
-    lastEvent[pin] = millis();
+    // lastEvent[pin] = millis();
 }
 
 void setup()
@@ -148,7 +149,7 @@ void setup()
                     }else{
                         goInputOnOff(i).dataPointType(DPT_Switch);
                         #if (ARDUINO_API_VERSION >= 10200)
-                            attachInterrupt(digitalPinToInterrupt(pinTbl[i]), inCbTbl[i], (PinStatus)CHANGE);
+                            attachInterrupt(digitalPinToInterrupt(pinTbl[i]), inCbTbl[i], (PinStatus)RISING);
                         #else
                             attachInterrupt(digitalPinToInterrupt(pinTbl[i]), inCbTbl[i], CHANGE);
                         #endif
@@ -160,7 +161,7 @@ void setup()
                     val[i] = config == CONFIG_IN_TOGGLE_ON;
                     pinMode(pinTbl[i], INPUT_PULLUP);
                     #if (ARDUINO_API_VERSION >= 10200)
-                        attachInterrupt(digitalPinToInterrupt(pinTbl[i]), inCbTbl[i + NUMIOS], (PinStatus)CHANGE);
+                        attachInterrupt(digitalPinToInterrupt(pinTbl[i]), inCbTbl[i + NUMIOS], (PinStatus)RISING);
                     #else
                         attachInterrupt(digitalPinToInterrupt(pinTbl[i]), inCbTbl[i + NUMIOS], CHANGE);
                     #endif
